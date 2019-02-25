@@ -1,4 +1,4 @@
-namespace Microsoft.Azure.AzConfig.Models
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models
 {
 
     /// <summary>
@@ -102,7 +102,8 @@ namespace Microsoft.Azure.AzConfig.Models
             {
                 return new Error
                 {
-                ErrorProperty = ErrorPropertiesTypeConverter.ConvertFrom(sourceValue.ErrorProperty),
+                Code = sourceValue.Code,
+                Message = sourceValue.Message,
                 };
             }
             catch

@@ -1,4 +1,4 @@
-namespace Microsoft.Azure.AzConfig.Models
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models
 {
 
     /// <summary>

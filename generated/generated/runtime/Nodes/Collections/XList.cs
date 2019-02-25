@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Microsoft.Azure.AzConfig.Runtime.Json
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Json
 {
     internal sealed class XList<T> : JsonArray, IEnumerable<JsonNode>
     {

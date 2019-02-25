@@ -1,5 +1,5 @@
 
-namespace Microsoft.Azure.AzConfig.Runtime
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime
 {
     internal static class Method
     {

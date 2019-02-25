@@ -1,6 +1,6 @@
-namespace Microsoft.Azure.AzConfig
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration
 {
-    using static Microsoft.Azure.AzConfig.Runtime.Extensions;
+    using static Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Extensions;
     using SendAsyncStepDelegate = System.Func<System.Net.Http.HttpRequestMessage, System.Threading.CancellationToken, System.Action, System.Func<string, System.Threading.CancellationToken, System.Func<System.EventArgs>, System.Threading.Tasks.Task>, System.Func<System.Net.Http.HttpRequestMessage, System.Threading.CancellationToken, System.Action, System.Func<string, System.Threading.CancellationToken, System.Func<System.EventArgs>, System.Threading.Tasks.Task>, System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage>>, System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage>>;
     using PipelineChangeDelegate = System.Action<System.Func<System.Net.Http.HttpRequestMessage, System.Threading.CancellationToken, System.Action, System.Func<string, System.Threading.CancellationToken, System.Func<System.EventArgs>, System.Threading.Tasks.Task>, System.Func<System.Net.Http.HttpRequestMessage, System.Threading.CancellationToken, System.Action, System.Func<string, System.Threading.CancellationToken, System.Func<System.EventArgs>, System.Threading.Tasks.Task>, System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage>>, System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage>>>;
     using GetParameterDelegate = System.Func<string, string, System.Management.Automation.InvocationInfo, string, string, object>;
@@ -16,40 +16,40 @@ namespace Microsoft.Azure.AzConfig
         /// <summary>FIXME: Field _handler is MISSING DESCRIPTION</summary>
         public System.Net.Http.HttpClientHandler _handler = new System.Net.Http.HttpClientHandler();
         /// <summary>the ISendAsync pipeline instance</summary>
-         private Microsoft.Azure.AzConfig.Runtime.HttpPipeline _pipeline;
+         private Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpPipeline _pipeline;
         /// <summary>the ISendAsync pipeline instance (when proxy is enabled)</summary>
-         private Microsoft.Azure.AzConfig.Runtime.HttpPipeline _pipelineWithProxy;
+         private Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpPipeline _pipelineWithProxy;
         /// <summary>FIXME: Field _webProxy is MISSING DESCRIPTION</summary>
         public System.Net.WebProxy _webProxy = new System.Net.WebProxy();
         /// <summary>Gets completion data for azure specific fields</summary>
         public ArgumentCompleterDelegate ArgumentCompleter {get;set;}
         /// <summary>The instance of the Client API</summary>
-        public Microsoft.Azure.AzConfig.AzconfigManagementClient ClientAPI {get;set;}
+        public Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.AppConfiguration ClientAPI {get;set;}
         /// <summary>A delegate that gets called for each signalled event</summary>
         public EventListenerDelegate EventListener {get;set;}
         /// <summary>The delegate to call to get parameter data from a common module.</summary>
         public GetParameterDelegate GetParameterValue {get;set;}
         /// <summary>Backing field for <see cref="Instance" /> property.</summary>
-        private static Microsoft.Azure.AzConfig.Module _instance;
+        private static Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Module _instance;
 
         /// <summary>the singleton of this module class</summary>
-        public static Microsoft.Azure.AzConfig.Module Instance => Microsoft.Azure.AzConfig.Module._instance?? (Microsoft.Azure.AzConfig.Module._instance = new Microsoft.Azure.AzConfig.Module());
+        public static Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Module Instance => Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Module._instance?? (Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Module._instance = new Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Module());
         /// <summary>The Name of this module</summary>
-        public string Name => @"AzconfigManagement";
+        public string Name => @"AppConfiguration";
         /// <summary>The delegate to call when this module is loaded (supporting a commmon module).</summary>
         public ModuleLoadPipelineDelegate OnModuleLoad {get;set;}
         /// <summary>The delegate to call before each new request (supporting a commmon module).</summary>
         public NewRequestPipelineDelegate OnNewRequest {get;set;}
         /// <summary>The ResourceID for this module (azure arm).</summary>
-        public string ResourceId => @"AzconfigManagement";
+        public string ResourceId => @"AppConfiguration";
         /// <summary>FIXME: Method AfterCreatePipeline is MISSING DESCRIPTION</summary>
         /// <param name="invocationInfo">The <see cref="System.Management.Automation.InvocationInfo" /> from the cmdlet</param>
         /// <param name="pipeline">The HttpPipeline for the request</param>
-        partial void AfterCreatePipeline(System.Management.Automation.InvocationInfo invocationInfo, ref Microsoft.Azure.AzConfig.Runtime.HttpPipeline pipeline);
+        partial void AfterCreatePipeline(System.Management.Automation.InvocationInfo invocationInfo, ref Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpPipeline pipeline);
         /// <summary>FIXME: Method BeforeCreatePipeline is MISSING DESCRIPTION</summary>
         /// <param name="invocationInfo">The <see cref="System.Management.Automation.InvocationInfo" /> from the cmdlet</param>
         /// <param name="pipeline">The HttpPipeline for the request</param>
-        partial void BeforeCreatePipeline(System.Management.Automation.InvocationInfo invocationInfo, ref Microsoft.Azure.AzConfig.Runtime.HttpPipeline pipeline);
+        partial void BeforeCreatePipeline(System.Management.Automation.InvocationInfo invocationInfo, ref Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpPipeline pipeline);
         /// <summary>FIXME: Method CustomInit is MISSING DESCRIPTION</summary>
 
         partial void CustomInit();
@@ -57,10 +57,10 @@ namespace Microsoft.Azure.AzConfig
         /// <param name="invocationInfo">The <see cref="System.Management.Automation.InvocationInfo" /> from the cmdlet</param>
         /// <param name="correlationId">the cmdlet's correlation id.</param>
         /// <param name="processRecordId">the cmdlet's process record correlation id.</param>
-        /// <returns>An instance of Microsoft.Azure.AzConfig.Runtime.HttpPipeline for the remote call.</returns>
-        public Microsoft.Azure.AzConfig.Runtime.HttpPipeline CreatePipeline(System.Management.Automation.InvocationInfo invocationInfo, string correlationId, string processRecordId)
+        /// <returns>An instance of Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpPipeline for the remote call.</returns>
+        public Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpPipeline CreatePipeline(System.Management.Automation.InvocationInfo invocationInfo, string correlationId, string processRecordId)
         {
-            Microsoft.Azure.AzConfig.Runtime.HttpPipeline pipeline = null;
+            Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpPipeline pipeline = null;
             BeforeCreatePipeline(invocationInfo, ref pipeline);
             pipeline = (pipeline ?? (_handler.UseProxy ? _pipelineWithProxy : _pipeline)).Clone();
             AfterCreatePipeline(invocationInfo, ref pipeline);
@@ -87,10 +87,10 @@ namespace Microsoft.Azure.AzConfig
         private Module()
         {
             /// constructor
-            ClientAPI = new Microsoft.Azure.AzConfig.AzconfigManagementClient();
+            ClientAPI = new Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.AppConfiguration();
             _handler.Proxy = _webProxy;
-            _pipeline = new Microsoft.Azure.AzConfig.Runtime.HttpPipeline(new Microsoft.Azure.AzConfig.Runtime.HttpClientFactory(new System.Net.Http.HttpClient()));
-            _pipelineWithProxy = new Microsoft.Azure.AzConfig.Runtime.HttpPipeline(new Microsoft.Azure.AzConfig.Runtime.HttpClientFactory(new System.Net.Http.HttpClient(_handler)));
+            _pipeline = new Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpPipeline(new Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpClientFactory(new System.Net.Http.HttpClient()));
+            _pipelineWithProxy = new Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpPipeline(new Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpClientFactory(new System.Net.Http.HttpClient(_handler)));
         }
         /// <summary>FIXME: Method SetProxyConfiguration is MISSING DESCRIPTION</summary>
         /// <param name="proxy">The HTTP Proxy to use.</param>

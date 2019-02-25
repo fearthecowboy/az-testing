@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Microsoft.Azure.AzConfig.Runtime.Json
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Json
 {
     internal class SerializationOptions
     {

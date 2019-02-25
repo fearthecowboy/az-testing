@@ -1,11 +1,11 @@
-namespace Microsoft.Azure.AzConfig.Runtime.Json
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Json
 {
     using System;
     using System.Collections.Generic;
 
     public partial class JsonObject
     {
-        internal override object ToValue() =>  Microsoft.Azure.AzConfig.Runtime.JsonSerializable.FromJson(this,new System.Collections.Generic.Dictionary<string,object>());
+        internal override object ToValue() =>  Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.JsonSerializable.FromJson(this,new System.Collections.Generic.Dictionary<string,object>());
         
         internal void SafeAdd(string name, Func<JsonNode> valueFn)
         {

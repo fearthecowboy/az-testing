@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Microsoft.Azure.AzConfig.Runtime.Json
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Json
 {
     public sealed class StringLikeConverter : IJsonConverter
     {

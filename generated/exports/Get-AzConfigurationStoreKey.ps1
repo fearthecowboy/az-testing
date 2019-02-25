@@ -1,184 +1,80 @@
 function Get-AzConfigurationStoreKey {
-[OutputType('Microsoft.Azure.AzConfig.Models.IApiKeyListResult')]
+[OutputType('Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models.IApiKeyListResult')]
 [CmdletBinding(DefaultParameterSetName='KeysResourceGroupNameConfigStoreName', SupportsShouldProcess=$true, ConfirmImpact='Medium')]
 param(
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreName', HelpMessage='Wait for .NET debugger to attach')]
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', HelpMessage='Wait for .NET debugger to attach')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='Wait for .NET debugger to attach')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', HelpMessage='Wait for .NET debugger to attach')]
-    [switch]
+    [Parameter(DontShow=$true, HelpMessage='Wait for .NET debugger to attach')]
+    [System.Management.Automation.SwitchParameter]
     ${Break},
 
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The name of the configuration store.')]
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', Mandatory=$true, HelpMessage='The name of the configuration store.')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The name of the configuration store.')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', Mandatory=$true, HelpMessage='The name of the configuration store.')]
-    [string]
+    [Parameter(Mandatory=$true, HelpMessage='The name of the configuration store.')]
+    [System.String]
     ${ConfigStoreName},
 
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreName', HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
+    [Parameter(HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
     [Alias('AzureRMContext','AzureCredential')]
     [ValidateNotNull()]
     [System.Object]
     ${DefaultProfile},
 
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreName', HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
+    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
     [ValidateNotNull()]
-    [Microsoft.Azure.AzConfig.Runtime.SendAsyncStep[]]
+    [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
     ${HttpPipelineAppend},
 
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreName', HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
+    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
     [ValidateNotNull()]
-    [Microsoft.Azure.AzConfig.Runtime.SendAsyncStep[]]
+    [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
     ${HttpPipelinePrepend},
 
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreName', HelpMessage='The URI for the proxy server to use')]
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', HelpMessage='The URI for the proxy server to use')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='The URI for the proxy server to use')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', HelpMessage='The URI for the proxy server to use')]
-    [uri]
+    [Parameter(DontShow=$true, HelpMessage='The URI for the proxy server to use')]
+    [System.Uri]
     ${Proxy},
 
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreName', HelpMessage='Credentials for a proxy server to use for the remote call')]
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', HelpMessage='Credentials for a proxy server to use for the remote call')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='Credentials for a proxy server to use for the remote call')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', HelpMessage='Credentials for a proxy server to use for the remote call')]
+    [Parameter(DontShow=$true, HelpMessage='Credentials for a proxy server to use for the remote call')]
     [ValidateNotNull()]
-    [pscredential]
+    [System.Management.Automation.PSCredential]
     ${ProxyCredential},
 
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreName', HelpMessage='Use the default credentials for the proxy')]
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', HelpMessage='Use the default credentials for the proxy')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='Use the default credentials for the proxy')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', HelpMessage='Use the default credentials for the proxy')]
-    [switch]
+    [Parameter(DontShow=$true, HelpMessage='Use the default credentials for the proxy')]
+    [System.Management.Automation.SwitchParameter]
     ${ProxyUseDefaultCredentials},
 
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The name of the resource group to which the container registry belongs.')]
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', Mandatory=$true, HelpMessage='The name of the resource group to which the container registry belongs.')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The name of the resource group to which the container registry belongs.')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', Mandatory=$true, HelpMessage='The name of the resource group to which the container registry belongs.')]
-    [string]
+    [Parameter(Mandatory=$true, HelpMessage='The name of the resource group to which the container registry belongs.')]
+    [System.String]
     ${ResourceGroupName},
 
     [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', Mandatory=$true, HelpMessage='A skip token is used to continue retrieving items after an operation returns a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skipToken parameter that specifies a starting point to use for subsequent calls.')]
     [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', Mandatory=$true, HelpMessage='A skip token is used to continue retrieving items after an operation returns a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skipToken parameter that specifies a starting point to use for subsequent calls.')]
-    [string]
+    [System.String]
     ${SkipToken},
 
     [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The Microsoft Azure subscription ID.')]
     [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', Mandatory=$true, HelpMessage='The Microsoft Azure subscription ID.')]
-    [string]
-    ${SubscriptionId})
+    [System.String]
+    ${SubscriptionId}
+)
 
-begin
-{
-  switch ($PsCmdlet.ParameterSetName) { 
-
-  'KeysResourceGroupNameConfigStoreNameSkipToken' {
-
+begin {
     try {
         $outBuffer = $null
-        if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer))
-        {
+        if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer)) {
             $PSBoundParameters['OutBuffer'] = 1
         }
-        $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('AzconfigManagement.private\Get-AzConfigurationStoreKey_KeysResourceGroupNameConfigStoreNameSkipToken', [System.Management.Automation.CommandTypes]::Cmdlet)
-        $scriptCmd = {& $wrappedCmd @PSBoundParameters }
+        $parameterSet = $PsCmdlet.ParameterSetName
+        $variantSuffix = "_$parameterSet"
+        if ("$parameterSet" -eq '__Generic' -or "$parameterSet" -eq '__AllParameterSets') {
+            $variantSuffix = ''
+        }
+        $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand("AppConfiguration.private\Get-AzConfigurationStoreKey$variantSuffix", [System.Management.Automation.CommandTypes]::Cmdlet)
+        $scriptCmd = {& $wrappedCmd @PSBoundParameters}
         $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
         $steppablePipeline.Begin($PSCmdlet)
     } catch {
         throw
     }
-
 }
 
-  'KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken' {
-
-    try {
-        $outBuffer = $null
-        if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer))
-        {
-            $PSBoundParameters['OutBuffer'] = 1
-        }
-        $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('AzconfigManagement.private\Get-AzConfigurationStoreKey_KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', [System.Management.Automation.CommandTypes]::Cmdlet)
-        $scriptCmd = {& $wrappedCmd @PSBoundParameters }
-        $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
-        $steppablePipeline.Begin($PSCmdlet)
-    } catch {
-        throw
-    }
-
-}
-
-  'KeysSubscriptionIdResourceGroupNameConfigStoreName' {
-
-    try {
-        $outBuffer = $null
-        if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer))
-        {
-            $PSBoundParameters['OutBuffer'] = 1
-        }
-        $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('AzconfigManagement.private\Get-AzConfigurationStoreKey_KeysSubscriptionIdResourceGroupNameConfigStoreName', [System.Management.Automation.CommandTypes]::Cmdlet)
-        $scriptCmd = {& $wrappedCmd @PSBoundParameters }
-        $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
-        $steppablePipeline.Begin($PSCmdlet)
-    } catch {
-        throw
-    }
-
-}
-
-  'KeysResourceGroupNameConfigStoreName' {
-
-    try {
-        $outBuffer = $null
-        if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer))
-        {
-            $PSBoundParameters['OutBuffer'] = 1
-        }
-        $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('AzconfigManagement.private\Get-AzConfigurationStoreKey_KeysResourceGroupNameConfigStoreName', [System.Management.Automation.CommandTypes]::Cmdlet)
-        $scriptCmd = {& $wrappedCmd @PSBoundParameters }
-        $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
-        $steppablePipeline.Begin($PSCmdlet)
-    } catch {
-        throw
-    }
-
-}
-
-  default {
-
-    try {
-        $outBuffer = $null
-        if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer))
-        {
-            $PSBoundParameters['OutBuffer'] = 1
-        }
-        $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('AzconfigManagement.private\Get-AzConfigurationStoreKey_KeysResourceGroupNameConfigStoreName', [System.Management.Automation.CommandTypes]::Cmdlet)
-        $scriptCmd = {& $wrappedCmd @PSBoundParameters }
-        $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
-        $steppablePipeline.Begin($PSCmdlet)
-    } catch {
-        throw
-    }
-
-}
-
-}
-}
-
-process
-{
+process {
     try {
         $steppablePipeline.Process($_)
     } catch {
@@ -186,20 +82,18 @@ process
     }
 }
 
-end
-{
+end {
     try {
         $steppablePipeline.End()
     } catch {
         throw
     }
 }
+
 <#
-
-.ForwardHelpTargetName AzconfigManagement.private\Get-AzConfigurationStoreKey_KeysResourceGroupNameConfigStoreName
+.ForwardHelpTargetName AppConfiguration.private\Get-AzConfigurationStoreKey_KeysResourceGroupNameConfigStoreName
 .ForwardHelpCategory Cmdlet
-
+.Description
+Lists the access key for the specified configuration store.
 #>
-
 }
-

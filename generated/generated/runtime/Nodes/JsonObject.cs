@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Microsoft.Azure.AzConfig.Runtime.Json
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Json
 {
     public partial class JsonObject : JsonNode, IDictionary<string, JsonNode>
     {

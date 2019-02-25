@@ -1,9 +1,0 @@
-C:\work\2019\azconfig\generated\bin\Release\netstandard2.0\AzconfigManagement.private.deps.json
-C:\work\2019\azconfig\generated\bin\Release\netstandard2.0\AzconfigManagement.private.dll
-C:\work\2019\azconfig\generated\bin\Release\netstandard2.0\AzconfigManagement.private.pdb
-C:\work\2019\azconfig\generated\obj\Release\netstandard2.0\AzconfigManagement.private.csprojAssemblyReference.cache
-C:\work\2019\azconfig\generated\obj\Release\netstandard2.0\AzconfigManagement.private.csproj.CoreCompileInputs.cache
-C:\work\2019\azconfig\generated\obj\Release\netstandard2.0\AzconfigManagement.private.AssemblyInfoInputs.cache
-C:\work\2019\azconfig\generated\obj\Release\netstandard2.0\AzconfigManagement.private.AssemblyInfo.cs
-C:\work\2019\azconfig\generated\obj\Release\netstandard2.0\AzconfigManagement.private.dll
-C:\work\2019\azconfig\generated\obj\Release\netstandard2.0\AzconfigManagement.private.pdb

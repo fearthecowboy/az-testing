@@ -1,128 +1,82 @@
 function Remove-AzConfigurationStore {
+[OutputType('System.Boolean')]
 [CmdletBinding(DefaultParameterSetName='ResourceGroupNameConfigStoreName', SupportsShouldProcess=$true, ConfirmImpact='Medium')]
 param(
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreName', HelpMessage='Run the command as a job')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='Run the command as a job')]
-    [switch]
+    [Parameter(HelpMessage='Run the command as a job')]
+    [System.Management.Automation.SwitchParameter]
     ${AsJob},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreName', HelpMessage='Wait for .NET debugger to attach')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='Wait for .NET debugger to attach')]
-    [switch]
+    [Parameter(DontShow=$true, HelpMessage='Wait for .NET debugger to attach')]
+    [System.Management.Automation.SwitchParameter]
     ${Break},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The name of the configuration store.')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The name of the configuration store.')]
-    [string]
+    [Parameter(Mandatory=$true, HelpMessage='The name of the configuration store.')]
+    [System.String]
     ${ConfigStoreName},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreName', HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
+    [Parameter(HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
     [Alias('AzureRMContext','AzureCredential')]
     [ValidateNotNull()]
     [System.Object]
     ${DefaultProfile},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreName', HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
+    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
     [ValidateNotNull()]
-    [Microsoft.Azure.AzConfig.Runtime.SendAsyncStep[]]
+    [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
     ${HttpPipelineAppend},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreName', HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
+    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
     [ValidateNotNull()]
-    [Microsoft.Azure.AzConfig.Runtime.SendAsyncStep[]]
+    [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
     ${HttpPipelinePrepend},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreName', HelpMessage='The URI for the proxy server to use')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='The URI for the proxy server to use')]
-    [uri]
+    [Parameter(HelpMessage='When specified, PassThru will force the cmdlet return a ''bool'' given that there isn''t a return type by default.')]
+    [System.Management.Automation.SwitchParameter]
+    ${PassThru},
+
+    [Parameter(DontShow=$true, HelpMessage='The URI for the proxy server to use')]
+    [System.Uri]
     ${Proxy},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreName', HelpMessage='Credentials for a proxy server to use for the remote call')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='Credentials for a proxy server to use for the remote call')]
+    [Parameter(DontShow=$true, HelpMessage='Credentials for a proxy server to use for the remote call')]
     [ValidateNotNull()]
-    [pscredential]
+    [System.Management.Automation.PSCredential]
     ${ProxyCredential},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreName', HelpMessage='Use the default credentials for the proxy')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', HelpMessage='Use the default credentials for the proxy')]
-    [switch]
+    [Parameter(DontShow=$true, HelpMessage='Use the default credentials for the proxy')]
+    [System.Management.Automation.SwitchParameter]
     ${ProxyUseDefaultCredentials},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The name of the resource group to which the container registry belongs.')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The name of the resource group to which the container registry belongs.')]
-    [string]
+    [Parameter(Mandatory=$true, HelpMessage='The name of the resource group to which the container registry belongs.')]
+    [System.String]
     ${ResourceGroupName},
 
     [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The Microsoft Azure subscription ID.')]
-    [string]
-    ${SubscriptionId})
+    [System.String]
+    ${SubscriptionId}
+)
 
-begin
-{
-  switch ($PsCmdlet.ParameterSetName) { 
-
-  'SubscriptionIdResourceGroupNameConfigStoreName' {
-
+begin {
     try {
         $outBuffer = $null
-        if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer))
-        {
+        if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer)) {
             $PSBoundParameters['OutBuffer'] = 1
         }
-        $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('AzconfigManagement.private\Remove-AzConfigurationStore_SubscriptionIdResourceGroupNameConfigStoreName', [System.Management.Automation.CommandTypes]::Cmdlet)
-        $scriptCmd = {& $wrappedCmd @PSBoundParameters }
+        $parameterSet = $PsCmdlet.ParameterSetName
+        $variantSuffix = "_$parameterSet"
+        if ("$parameterSet" -eq '__Generic' -or "$parameterSet" -eq '__AllParameterSets') {
+            $variantSuffix = ''
+        }
+        $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand("AppConfiguration.private\Remove-AzConfigurationStore$variantSuffix", [System.Management.Automation.CommandTypes]::Cmdlet)
+        $scriptCmd = {& $wrappedCmd @PSBoundParameters}
         $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
         $steppablePipeline.Begin($PSCmdlet)
     } catch {
         throw
     }
-
 }
 
-  'ResourceGroupNameConfigStoreName' {
-
-    try {
-        $outBuffer = $null
-        if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer))
-        {
-            $PSBoundParameters['OutBuffer'] = 1
-        }
-        $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('AzconfigManagement.private\Remove-AzConfigurationStore_ResourceGroupNameConfigStoreName', [System.Management.Automation.CommandTypes]::Cmdlet)
-        $scriptCmd = {& $wrappedCmd @PSBoundParameters }
-        $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
-        $steppablePipeline.Begin($PSCmdlet)
-    } catch {
-        throw
-    }
-
-}
-
-  default {
-
-    try {
-        $outBuffer = $null
-        if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer))
-        {
-            $PSBoundParameters['OutBuffer'] = 1
-        }
-        $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('AzconfigManagement.private\Remove-AzConfigurationStore_ResourceGroupNameConfigStoreName', [System.Management.Automation.CommandTypes]::Cmdlet)
-        $scriptCmd = {& $wrappedCmd @PSBoundParameters }
-        $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
-        $steppablePipeline.Begin($PSCmdlet)
-    } catch {
-        throw
-    }
-
-}
-
-}
-}
-
-process
-{
+process {
     try {
         $steppablePipeline.Process($_)
     } catch {
@@ -130,20 +84,18 @@ process
     }
 }
 
-end
-{
+end {
     try {
         $steppablePipeline.End()
     } catch {
         throw
     }
 }
+
 <#
-
-.ForwardHelpTargetName AzconfigManagement.private\Remove-AzConfigurationStore_ResourceGroupNameConfigStoreName
+.ForwardHelpTargetName AppConfiguration.private\Remove-AzConfigurationStore_ResourceGroupNameConfigStoreName
 .ForwardHelpCategory Cmdlet
-
+.Description
+Deletes a configuration store.
 #>
-
 }
-

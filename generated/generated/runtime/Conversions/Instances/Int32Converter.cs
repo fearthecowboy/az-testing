@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Azure.AzConfig.Runtime.Json
+﻿namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Json
 {
     public sealed class Int32Converter : JsonConverter<int>
     {

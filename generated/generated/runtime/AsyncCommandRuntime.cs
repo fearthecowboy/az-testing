@@ -1,4 +1,4 @@
-namespace Microsoft.Azure.AzConfig.Runtime.PowerShell
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.PowerShell
 {
     using System.Management.Automation;
     using System.Management.Automation.Host;

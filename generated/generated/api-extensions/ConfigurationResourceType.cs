@@ -1,4 +1,4 @@
-namespace Microsoft.Azure.AzConfig.Support
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Support
 {
 
     /// <summary>Argument completer implementation for ConfigurationResourceType.</summary>
@@ -19,9 +19,9 @@ namespace Microsoft.Azure.AzConfig.Support
         /// </returns>
         public System.Collections.Generic.IEnumerable<System.Management.Automation.CompletionResult> CompleteArgument(System.String commandName, System.String parameterName, System.String wordToComplete, System.Management.Automation.Language.CommandAst commandAst, System.Collections.IDictionary fakeBoundParameters)
         {
-            if (System.String.IsNullOrEmpty(wordToComplete) || "Microsoft.Azconfig/configurationStores".StartsWith(wordToComplete, System.StringComparison.InvariantCultureIgnoreCase))
+            if (System.String.IsNullOrEmpty(wordToComplete) || "Microsoft.AppConfiguration/configurationStores".StartsWith(wordToComplete, System.StringComparison.InvariantCultureIgnoreCase))
             {
-                yield return new System.Management.Automation.CompletionResult("Microsoft.Azconfig/configurationStores", "Microsoft.Azconfig/configurationStores", System.Management.Automation.CompletionResultType.ParameterValue, "Microsoft.Azconfig/configurationStores");
+                yield return new System.Management.Automation.CompletionResult("Microsoft.AppConfiguration/configurationStores", "Microsoft.AppConfiguration/configurationStores", System.Management.Automation.CompletionResultType.ParameterValue, "Microsoft.AppConfiguration/configurationStores");
             }
         }
     }

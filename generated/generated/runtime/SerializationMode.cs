@@ -1,4 +1,4 @@
-namespace Microsoft.Azure.AzConfig.Runtime
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime
 {
     [System.Flags]
     public enum SerializationMode

@@ -1,4 +1,4 @@
-namespace Microsoft.Azure.AzConfig.Runtime
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime
 {
     public static partial class Events
     {

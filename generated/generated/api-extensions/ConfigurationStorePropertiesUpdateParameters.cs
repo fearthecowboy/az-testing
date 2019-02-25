@@ -1,4 +1,4 @@
-namespace Microsoft.Azure.AzConfig.Models
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models
 {
 
     /// <summary>The properties for updating a configuration store.</summary>
@@ -12,10 +12,10 @@ namespace Microsoft.Azure.AzConfig.Models
         /// </summary>
         /// <param name="jsonText">a string containing a JSON serialized instance of this model.</param>
         /// <returns>an instance of the <see cref="className" /> model class.</returns>
-        public static Microsoft.Azure.AzConfig.Models.IConfigurationStorePropertiesUpdateParameters FromJsonString(string jsonText) => FromJson(Microsoft.Azure.AzConfig.Runtime.Json.JsonNode.Parse(jsonText));
+        public static Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models.IConfigurationStorePropertiesUpdateParameters FromJsonString(string jsonText) => FromJson(Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Json.JsonNode.Parse(jsonText));
         /// <summary>Serializes this instance to a json string.</summary>
         /// <returns>a <see cref="System.String" /> containing this model serialized to JSON text.</returns>
-        public string ToJsonString() => ToJson(null, Microsoft.Azure.AzConfig.Runtime.SerializationMode.IncludeAll)?.ToString();
+        public string ToJsonString() => ToJson(null, Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SerializationMode.IncludeAll)?.ToString();
     }
     /// The properties for updating a configuration store.
     [System.ComponentModel.TypeConverter(typeof(ConfigurationStorePropertiesUpdateParametersTypeConverter))]

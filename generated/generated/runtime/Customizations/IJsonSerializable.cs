@@ -1,8 +1,8 @@
 
-using Microsoft.Azure.AzConfig.Runtime.Json;
+using Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Json;
 using System;
 
-namespace Microsoft.Azure.AzConfig.Runtime
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime
 {
     public interface IJsonSerializable
     {
@@ -124,7 +124,7 @@ namespace Microsoft.Azure.AzConfig.Runtime
         internal static JsonNode ToJsonValue(object value)
         {
             // things that implement our interface are preferred. 
-            if (value is Microsoft.Azure.AzConfig.Runtime.IJsonSerializable jsonSerializable)
+            if (value is Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.IJsonSerializable jsonSerializable)
             {
                 return jsonSerializable.ToJson();
             }

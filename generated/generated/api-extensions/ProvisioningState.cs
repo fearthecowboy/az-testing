@@ -1,4 +1,4 @@
-namespace Microsoft.Azure.AzConfig.Support
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Support
 {
 
     /// <summary>Argument completer implementation for ProvisioningState.</summary>

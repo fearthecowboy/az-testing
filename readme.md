@@ -1,8 +1,8 @@
-# AzConfig Module
+# AppConfiguration Module
 
 > see https://aka.ms/autorest
 
-This is the AutoRest configuration and documentation file for AzConfig powershell module
+This is the AutoRest configuration and documentation file for AppConfiguration powershell module
 
 ---
 ## Requirements to build the module
@@ -46,44 +46,44 @@ Processing cmdlet variants
 Generating unified cmdlet proxies
 Done.
 
-PS C:\...\sample\generated [ testing AzconfigManagement ] >
+PS C:\...\sample\generated [ testing AppConfigurationManagement ] >
 ```
 
 and you can examine the cmdlets: 
 
-> `get-command -module AzconfigManagement `
+> `get-command -module AppConfigurationManagement `
 
 ``` bash 
 CommandType     Name                                               Version    Source
 -----------     ----                                               -------    ------
-Function        Get-AzConfigurationStore                           1.0        AzconfigManagement
-Function        Get-AzConfigurationStoreKey                        1.0        AzconfigManagement
-Function        Get-AzOperation                                    1.0        AzconfigManagement
-Function        New-AzCheckNameAvailabilityParametersObject        1.0        AzconfigManagement
-Function        New-AzConfigurationStore                           1.0        AzconfigManagement
-Function        New-AzConfigurationStoreKey                        1.0        AzconfigManagement
-Function        New-AzConfigurationStoreObject                     1.0        AzconfigManagement
-Function        New-AzConfigurationStorePropertiesObject           1.0        AzconfigManagement
-Function        New-AzConfigurationStorePropertiesUpdateParamet... 1.0        AzconfigManagement
-Function        New-AzConfigurationStoreUpdateParametersObject     1.0        AzconfigManagement
-Function        New-AzRegenerateKeyParametersObject                1.0        AzconfigManagement
-Function        Remove-AzConfigurationStore                        1.0        AzconfigManagement
-Function        Test-AzOperationNameAvailability                   1.0        AzconfigManagement
-Function        Update-AzConfigurationStore                        1.0        AzconfigManagement
+Function        Get-AppConfigurationurationStore                           1.0        AppConfigurationManagement
+Function        Get-AppConfigurationurationStoreKey                        1.0        AppConfigurationManagement
+Function        Get-AzOperation                                    1.0        AppConfigurationManagement
+Function        New-AzCheckNameAvailabilityParametersObject        1.0        AppConfigurationManagement
+Function        New-AppConfigurationurationStore                           1.0        AppConfigurationManagement
+Function        New-AppConfigurationurationStoreKey                        1.0        AppConfigurationManagement
+Function        New-AppConfigurationurationStoreObject                     1.0        AppConfigurationManagement
+Function        New-AppConfigurationurationStorePropertiesObject           1.0        AppConfigurationManagement
+Function        New-AppConfigurationurationStorePropertiesUpdateParamet... 1.0        AppConfigurationManagement
+Function        New-AppConfigurationurationStoreUpdateParametersObject     1.0        AppConfigurationManagement
+Function        New-AzRegenerateKeyParametersObject                1.0        AppConfigurationManagement
+Function        Remove-AppConfigurationurationStore                        1.0        AppConfigurationManagement
+Function        Test-AzOperationNameAvailability                   1.0        AppConfigurationManagement
+Function        Update-AppConfigurationurationStore                        1.0        AppConfigurationManagement
 
 ```
 
 Run a command: 
 
-> `Get-AzConfigurationStore`
+> `Get-AppConfigurationurationStore`
 
 ```
 Name           Type                                   Id                                                                                                                                             Location  Tag   Propertie
                                                                                                                                                                                                                      s
 ----           ----                                   --                                                                                                                                             --------  ---   ---------
-ElkTestConfig  Microsoft.Azconfig/configurationStores /subscriptions/9e223dbe-3399-4e19-88eb-0975f02ac87f/resourceGroups/azconfigsrg/providers/Microsoft.Azconfig/configurationStores/elktestconfig  centralus {}    Micros...
-ElkTestConfig2 Microsoft.Azconfig/configurationStores /subscriptions/9e223dbe-3399-4e19-88eb-0975f02ac87f/resourceGroups/azconfigsrg/providers/Microsoft.Azconfig/configurationStores/elktestconfig2 centralus {}    Micros...
-testcf6        Microsoft.Azconfig/configurationStores /subscriptions/9e223dbe-3399-4e19-88eb-0975f02ac87f/resourceGroups/azconfigsrg/providers/Microsoft.Azconfig/configurationStores/testcf6        westus    {foo} Micros...
+ElkTestConfig  Microsoft.AppConfiguration/configurationStores /subscriptions/9e223dbe-3399-4e19-88eb-0975f02ac87f/resourceGroups/AppConfigurationsrg/providers/Microsoft.AppConfiguration/configurationStores/elktestconfig  centralus {}    Micros...
+ElkTestConfig2 Microsoft.AppConfiguration/configurationStores /subscriptions/9e223dbe-3399-4e19-88eb-0975f02ac87f/resourceGroups/AppConfigurationsrg/providers/Microsoft.AppConfiguration/configurationStores/elktestconfig2 centralus {}    Micros...
+testcf6        Microsoft.AppConfiguration/configurationStores /subscriptions/9e223dbe-3399-4e19-88eb-0975f02ac87f/resourceGroups/AppConfigurationsrg/providers/Microsoft.AppConfiguration/configurationStores/testcf6        westus    {foo} Micros...
 
 ```
 
@@ -100,14 +100,22 @@ This sample includes an [extension](./generated/custom/Module.cs) to the module 
 These are the settings for generating the cmdlets for the API with AutoRest (instead of putting them on the command line)
 
 ``` yaml
-input-file: azconfig.json
-namespace: Microsoft.Azure.AzConfig
+input-file: AppConfiguration.json
+namespace: Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration
+title: AppConfiguration
 powershell: true
 clear-output-folder: true
 output-folder: generated
 azure: true
+skip-model-cmdlets: true
 
+directive: 
+ - remove-operation: Operations_List
  
+ 
+ #- from: openapi-document: 
+   #where: $..paths.*[?(@.operationId == 'Operations_List')]
+   #transform: $ = undefined;
   
 ```
 

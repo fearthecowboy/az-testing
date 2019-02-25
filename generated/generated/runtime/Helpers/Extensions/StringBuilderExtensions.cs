@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Microsoft.Azure.AzConfig.Runtime.Json
+namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Json
 {
     internal static class StringBuilderExtensions
     {
