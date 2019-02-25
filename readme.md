@@ -54,22 +54,17 @@ and you can examine the cmdlets:
 > `get-command -module AppConfigurationManagement `
 
 ``` bash 
+get-command -module AppConfiguration
+
 CommandType     Name                                               Version    Source
 -----------     ----                                               -------    ------
-Function        Get-AppConfigurationurationStore                           1.0        AppConfigurationManagement
-Function        Get-AppConfigurationurationStoreKey                        1.0        AppConfigurationManagement
-Function        Get-AzOperation                                    1.0        AppConfigurationManagement
-Function        New-AzCheckNameAvailabilityParametersObject        1.0        AppConfigurationManagement
-Function        New-AppConfigurationurationStore                           1.0        AppConfigurationManagement
-Function        New-AppConfigurationurationStoreKey                        1.0        AppConfigurationManagement
-Function        New-AppConfigurationurationStoreObject                     1.0        AppConfigurationManagement
-Function        New-AppConfigurationurationStorePropertiesObject           1.0        AppConfigurationManagement
-Function        New-AppConfigurationurationStorePropertiesUpdateParamet... 1.0        AppConfigurationManagement
-Function        New-AppConfigurationurationStoreUpdateParametersObject     1.0        AppConfigurationManagement
-Function        New-AzRegenerateKeyParametersObject                1.0        AppConfigurationManagement
-Function        Remove-AppConfigurationurationStore                        1.0        AppConfigurationManagement
-Function        Test-AzOperationNameAvailability                   1.0        AppConfigurationManagement
-Function        Update-AppConfigurationurationStore                        1.0        AppConfigurationManagement
+Function        Get-AzConfigurationStore                           1.0        AppConfiguration
+Function        Get-AzConfigurationStoreKey                        1.0        AppConfiguration
+Function        New-AzConfigurationStore                           1.0        AppConfiguration
+Function        New-AzConfigurationStoreKey                        1.0        AppConfiguration
+Function        Remove-AzConfigurationStore                        1.0        AppConfiguration
+Function        Test-AzConfigurationStoreNameAvailability          1.0        AppConfiguration
+Function        Update-AzConfigurationStore                        1.0        AppConfiguration
 
 ```
 
