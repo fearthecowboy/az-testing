@@ -13,33 +13,25 @@ schema: 2.0.0
 
 ### KeysResourceGroupNameConfigStoreName (Default)
 ```
-Get-AzConfigurationStoreKey [-Break] -ConfigStoreName <String> [-DefaultProfile <Object>]
- [-HttpPipelineAppend <SendAsyncStep[]>] [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>]
- [-ProxyCredential <PSCredential>] [-ProxyUseDefaultCredentials] -ResourceGroupName <String> [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Get-AzConfigurationStoreKey -ConfigStoreName <String> [-DefaultProfile <Object>] -ResourceGroupName <String>
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken
 ```
-Get-AzConfigurationStoreKey [-Break] -ConfigStoreName <String> [-DefaultProfile <Object>]
- [-HttpPipelineAppend <SendAsyncStep[]>] [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>]
- [-ProxyCredential <PSCredential>] [-ProxyUseDefaultCredentials] -ResourceGroupName <String>
+Get-AzConfigurationStoreKey -ConfigStoreName <String> [-DefaultProfile <Object>] -ResourceGroupName <String>
  -SkipToken <String> -SubscriptionId <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### KeysResourceGroupNameConfigStoreNameSkipToken
 ```
-Get-AzConfigurationStoreKey [-Break] -ConfigStoreName <String> [-DefaultProfile <Object>]
- [-HttpPipelineAppend <SendAsyncStep[]>] [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>]
- [-ProxyCredential <PSCredential>] [-ProxyUseDefaultCredentials] -ResourceGroupName <String>
+Get-AzConfigurationStoreKey -ConfigStoreName <String> [-DefaultProfile <Object>] -ResourceGroupName <String>
  -SkipToken <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### KeysSubscriptionIdResourceGroupNameConfigStoreName
 ```
-Get-AzConfigurationStoreKey [-Break] -ConfigStoreName <String> [-DefaultProfile <Object>]
- [-HttpPipelineAppend <SendAsyncStep[]>] [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>]
- [-ProxyCredential <PSCredential>] [-ProxyUseDefaultCredentials] -ResourceGroupName <String>
+Get-AzConfigurationStoreKey -ConfigStoreName <String> [-DefaultProfile <Object>] -ResourceGroupName <String>
  -SubscriptionId <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -56,21 +48,6 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 
 ## PARAMETERS
-
-### -Break
-Wait for .NET debugger to attach
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -ConfigStoreName
 The name of the configuration store.
@@ -98,81 +75,6 @@ Aliases: AzureRMContext, AzureCredential
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -HttpPipelineAppend
-SendAsync Pipeline Steps to be appended to the front of the pipeline
-
-```yaml
-Type: SendAsyncStep[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -HttpPipelinePrepend
-SendAsync Pipeline Steps to be prepended to the front of the pipeline
-
-```yaml
-Type: SendAsyncStep[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Proxy
-The URI for the proxy server to use
-
-```yaml
-Type: Uri
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProxyCredential
-Credentials for a proxy server to use for the remote call
-
-```yaml
-Type: PSCredential
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProxyUseDefaultCredentials
-Use the default credentials for the proxy
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

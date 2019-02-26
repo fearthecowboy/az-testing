@@ -13,35 +13,29 @@ schema: 2.0.0
 
 ### ResourceGroupNameConfigStoreNameLocationTagsPropertiesExpanded (Default)
 ```
-New-AzConfigurationStore [-AsJob] [-Break] -ConfigStoreName <String> [-DefaultProfile <Object>]
- [-HttpPipelineAppend <SendAsyncStep[]>] [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>]
- [-ProxyCredential <PSCredential>] [-ProxyUseDefaultCredentials] -ResourceGroupName <String> -Location <String>
- [-Tag <Hashtable>] [-WhatIf] [-Confirm] [<CommonParameters>]
+New-AzConfigurationStore [-AsJob] -ConfigStoreName <String> [-DefaultProfile <Object>]
+ -ResourceGroupName <String> -Location <String> [-Tag <Hashtable>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### SubscriptionIdResourceGroupNameConfigStoreNameLocationTagsPropertiesEtc
 ```
-New-AzConfigurationStore [-AsJob] [-Break] -ConfigStoreCreationParameters <IConfigurationStore>
- -ConfigStoreName <String> [-DefaultProfile <Object>] [-HttpPipelineAppend <SendAsyncStep[]>]
- [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>] [-ProxyCredential <PSCredential>]
- [-ProxyUseDefaultCredentials] -ResourceGroupName <String> -SubscriptionId <String> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+New-AzConfigurationStore [-AsJob] -ConfigStoreCreationParameters <IConfigurationStore>
+ -ConfigStoreName <String> [-DefaultProfile <Object>] -ResourceGroupName <String> -SubscriptionId <String>
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ResourceGroupNameConfigStoreNameLocationTagsProperties
 ```
-New-AzConfigurationStore [-AsJob] [-Break] -ConfigStoreCreationParameters <IConfigurationStore>
- -ConfigStoreName <String> [-DefaultProfile <Object>] [-HttpPipelineAppend <SendAsyncStep[]>]
- [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>] [-ProxyCredential <PSCredential>]
- [-ProxyUseDefaultCredentials] -ResourceGroupName <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+New-AzConfigurationStore [-AsJob] -ConfigStoreCreationParameters <IConfigurationStore>
+ -ConfigStoreName <String> [-DefaultProfile <Object>] -ResourceGroupName <String> [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### SubscriptionIdResourceGroupNameConfigStoreNameLocationTagsPropertiesEtcEtc
 ```
-New-AzConfigurationStore [-AsJob] [-Break] -ConfigStoreName <String> [-DefaultProfile <Object>]
- [-HttpPipelineAppend <SendAsyncStep[]>] [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>]
- [-ProxyCredential <PSCredential>] [-ProxyUseDefaultCredentials] -ResourceGroupName <String> -Location <String>
- [-Tag <Hashtable>] -SubscriptionId <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+New-AzConfigurationStore [-AsJob] -ConfigStoreName <String> [-DefaultProfile <Object>]
+ -ResourceGroupName <String> -Location <String> [-Tag <Hashtable>] -SubscriptionId <String> [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -60,21 +54,6 @@ PS C:\> {{ Add example code here }}
 
 ### -AsJob
 Run the command as a job
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Break
-Wait for .NET debugger to attach
 
 ```yaml
 Type: SwitchParameter
@@ -130,81 +109,6 @@ Aliases: AzureRMContext, AzureCredential
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -HttpPipelineAppend
-SendAsync Pipeline Steps to be appended to the front of the pipeline
-
-```yaml
-Type: SendAsyncStep[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -HttpPipelinePrepend
-SendAsync Pipeline Steps to be prepended to the front of the pipeline
-
-```yaml
-Type: SendAsyncStep[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Proxy
-The URI for the proxy server to use
-
-```yaml
-Type: Uri
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProxyCredential
-Credentials for a proxy server to use for the remote call
-
-```yaml
-Type: PSCredential
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProxyUseDefaultCredentials
-Use the default credentials for the proxy
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

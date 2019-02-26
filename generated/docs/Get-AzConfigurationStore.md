@@ -11,69 +11,60 @@ schema: 2.0.0
 
 ## SYNTAX
 
+### __NoParameters (Default)
+```
+Get-AzConfigurationStore [-DefaultProfile <Object>] [<CommonParameters>]
+```
+
 ### SubscriptionIdResourceGroupNameConfigStoreNameEtc
 ```
-Get-AzConfigurationStore [-Break] [-DefaultProfile <Object>] [-HttpPipelineAppend <SendAsyncStep[]>]
- [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>] [-ProxyCredential <PSCredential>]
- [-ProxyUseDefaultCredentials] -ConfigStoreName <String> -ResourceGroupName <String> -SubscriptionId <String>
- [<CommonParameters>]
+Get-AzConfigurationStore [-DefaultProfile <Object>] -ConfigStoreName <String> -ResourceGroupName <String>
+ -SubscriptionId <String> [<CommonParameters>]
 ```
 
 ### ResourceGroupNameConfigStoreNameEtc
 ```
-Get-AzConfigurationStore [-Break] [-DefaultProfile <Object>] [-HttpPipelineAppend <SendAsyncStep[]>]
- [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>] [-ProxyCredential <PSCredential>]
- [-ProxyUseDefaultCredentials] -ConfigStoreName <String> -ResourceGroupName <String> [<CommonParameters>]
+Get-AzConfigurationStore [-DefaultProfile <Object>] -ConfigStoreName <String> -ResourceGroupName <String>
+ [<CommonParameters>]
 ```
 
 ### ResourceGroupSubscriptionIdResourceGroupNameSkipToken
 ```
-Get-AzConfigurationStore [-Break] [-DefaultProfile <Object>] [-HttpPipelineAppend <SendAsyncStep[]>]
- [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>] [-ProxyCredential <PSCredential>]
- [-ProxyUseDefaultCredentials] -ResourceGroupName <String> -SkipToken <String> -SubscriptionId <String>
- [<CommonParameters>]
+Get-AzConfigurationStore [-DefaultProfile <Object>] -ResourceGroupName <String> -SkipToken <String>
+ -SubscriptionId <String> [<CommonParameters>]
 ```
 
 ### ResourceGroupSubscriptionIdResourceGroupName
 ```
-Get-AzConfigurationStore [-Break] [-DefaultProfile <Object>] [-HttpPipelineAppend <SendAsyncStep[]>]
- [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>] [-ProxyCredential <PSCredential>]
- [-ProxyUseDefaultCredentials] -ResourceGroupName <String> -SubscriptionId <String> [<CommonParameters>]
+Get-AzConfigurationStore [-DefaultProfile <Object>] -ResourceGroupName <String> -SubscriptionId <String>
+ [<CommonParameters>]
 ```
 
 ### ResourceGroupResourceGroupNameSkipToken
 ```
-Get-AzConfigurationStore [-Break] [-DefaultProfile <Object>] [-HttpPipelineAppend <SendAsyncStep[]>]
- [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>] [-ProxyCredential <PSCredential>]
- [-ProxyUseDefaultCredentials] -ResourceGroupName <String> -SkipToken <String> [<CommonParameters>]
+Get-AzConfigurationStore [-DefaultProfile <Object>] -ResourceGroupName <String> -SkipToken <String>
+ [<CommonParameters>]
 ```
 
 ### ResourceGroupResourceGroupName
 ```
-Get-AzConfigurationStore [-Break] [-DefaultProfile <Object>] [-HttpPipelineAppend <SendAsyncStep[]>]
- [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>] [-ProxyCredential <PSCredential>]
- [-ProxyUseDefaultCredentials] -ResourceGroupName <String> [<CommonParameters>]
+Get-AzConfigurationStore [-DefaultProfile <Object>] -ResourceGroupName <String> [<CommonParameters>]
 ```
 
 ### SubscriptionIdSkipToken
 ```
-Get-AzConfigurationStore [-Break] [-DefaultProfile <Object>] [-HttpPipelineAppend <SendAsyncStep[]>]
- [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>] [-ProxyCredential <PSCredential>]
- [-ProxyUseDefaultCredentials] -SkipToken <String> -SubscriptionId <String> [<CommonParameters>]
+Get-AzConfigurationStore [-DefaultProfile <Object>] -SkipToken <String> -SubscriptionId <String>
+ [<CommonParameters>]
 ```
 
 ### SkipToken
 ```
-Get-AzConfigurationStore [-Break] [-DefaultProfile <Object>] [-HttpPipelineAppend <SendAsyncStep[]>]
- [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>] [-ProxyCredential <PSCredential>]
- [-ProxyUseDefaultCredentials] -SkipToken <String> [<CommonParameters>]
+Get-AzConfigurationStore [-DefaultProfile <Object>] -SkipToken <String> [<CommonParameters>]
 ```
 
 ### SubscriptionId
 ```
-Get-AzConfigurationStore [-Break] [-DefaultProfile <Object>] [-HttpPipelineAppend <SendAsyncStep[]>]
- [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <Uri>] [-ProxyCredential <PSCredential>]
- [-ProxyUseDefaultCredentials] -SubscriptionId <String> [<CommonParameters>]
+Get-AzConfigurationStore [-DefaultProfile <Object>] -SubscriptionId <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -90,21 +81,6 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
-### -Break
-Wait for .NET debugger to attach
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -DefaultProfile
 The credentials, account, tenant, and subscription used for communication with Azure.
 
@@ -116,81 +92,6 @@ Aliases: AzureRMContext, AzureCredential
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -HttpPipelineAppend
-SendAsync Pipeline Steps to be appended to the front of the pipeline
-
-```yaml
-Type: SendAsyncStep[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -HttpPipelinePrepend
-SendAsync Pipeline Steps to be prepended to the front of the pipeline
-
-```yaml
-Type: SendAsyncStep[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Proxy
-The URI for the proxy server to use
-
-```yaml
-Type: Uri
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProxyCredential
-Credentials for a proxy server to use for the remote call
-
-```yaml
-Type: PSCredential
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProxyUseDefaultCredentials
-Use the default credentials for the proxy
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -1,59 +1,74 @@
+<#
+.Description
+Checks whether the configuration store name is available for use.
+#>
 function Test-AzConfigurationStoreNameAvailability {
 [OutputType('Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models.INameAvailabilityStatus')]
-[CmdletBinding(DefaultParameterSetName='NameAvailabilityNameTypeExpanded', SupportsShouldProcess=$true, ConfirmImpact='Medium')]
+[CmdletBinding(DefaultParameterSetName='NameAvailabilityNameTypeExpanded', SupportsShouldProcess, ConfirmImpact='Medium')]
 param(
-    [Parameter(DontShow=$true, HelpMessage='Wait for .NET debugger to attach')]
+    [Parameter(DontShow)]
     [System.Management.Automation.SwitchParameter]
+    # Wait for .NET debugger to attach
     ${Break},
 
-    [Parameter(ParameterSetName='NameAvailabilityNameType', Mandatory=$true, ValueFromPipeline=$true, HelpMessage='Parameters used for checking whether a resource name is available.')]
-    [Parameter(ParameterSetName='NameAvailabilitySubscriptionIdNameType', Mandatory=$true, ValueFromPipeline=$true, HelpMessage='Parameters used for checking whether a resource name is available.')]
+    [Parameter(ParameterSetName='NameAvailabilityNameType', Mandatory, ValueFromPipeline)]
+    [Parameter(ParameterSetName='NameAvailabilitySubscriptionIdNameType', Mandatory, ValueFromPipeline)]
     [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models.ICheckNameAvailabilityParameters]
+    # Parameters used for checking whether a resource name is available.
     ${CheckNameAvailabilityParameters},
 
-    [Parameter(HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
-    [Alias('AzureRMContext','AzureCredential')]
+    [Parameter()]
+    [Alias('AzureRMContext', 'AzureCredential')]
     [ValidateNotNull()]
     [System.Object]
+    # The credentials, account, tenant, and subscription used for communication with Azure.
     ${DefaultProfile},
 
-    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
+    # SendAsync Pipeline Steps to be appended to the front of the pipeline
     ${HttpPipelineAppend},
 
-    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
+    # SendAsync Pipeline Steps to be prepended to the front of the pipeline
     ${HttpPipelinePrepend},
 
-    [Parameter(DontShow=$true, HelpMessage='The URI for the proxy server to use')]
+    [Parameter(DontShow)]
     [System.Uri]
+    # The URI for the proxy server to use
     ${Proxy},
 
-    [Parameter(DontShow=$true, HelpMessage='Credentials for a proxy server to use for the remote call')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [System.Management.Automation.PSCredential]
+    # Credentials for a proxy server to use for the remote call
     ${ProxyCredential},
 
-    [Parameter(DontShow=$true, HelpMessage='Use the default credentials for the proxy')]
+    [Parameter(DontShow)]
     [System.Management.Automation.SwitchParameter]
+    # Use the default credentials for the proxy
     ${ProxyUseDefaultCredentials},
 
-    [Parameter(ParameterSetName='NameAvailabilityNameTypeExpanded', Mandatory=$true, HelpMessage='The name to check for availability.')]
-    [Parameter(ParameterSetName='NameAvailabilitySubscriptionIdNameTypeExpanded', Mandatory=$true, HelpMessage='The name to check for availability.')]
+    [Parameter(ParameterSetName='NameAvailabilityNameTypeExpanded', Mandatory)]
+    [Parameter(ParameterSetName='NameAvailabilitySubscriptionIdNameTypeExpanded', Mandatory)]
     [System.String]
+    # The name to check for availability.
     ${Name},
 
-    [Parameter(ParameterSetName='NameAvailabilityNameTypeExpanded', Mandatory=$true, HelpMessage='The resource type to check for name availability.')]
-    [Parameter(ParameterSetName='NameAvailabilitySubscriptionIdNameTypeExpanded', Mandatory=$true, HelpMessage='The resource type to check for name availability.')]
+    [Parameter(ParameterSetName='NameAvailabilityNameTypeExpanded', Mandatory)]
+    [Parameter(ParameterSetName='NameAvailabilitySubscriptionIdNameTypeExpanded', Mandatory)]
     [ArgumentCompleter([Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Support.ConfigurationResourceType])]
     [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Support.ConfigurationResourceType]
+    # The resource type to check for name availability.
     ${Type},
 
-    [Parameter(ParameterSetName='NameAvailabilitySubscriptionIdNameType', Mandatory=$true, HelpMessage='The Microsoft Azure subscription ID.')]
-    [Parameter(ParameterSetName='NameAvailabilitySubscriptionIdNameTypeExpanded', Mandatory=$true, HelpMessage='The Microsoft Azure subscription ID.')]
+    [Parameter(ParameterSetName='NameAvailabilitySubscriptionIdNameType', Mandatory)]
+    [Parameter(ParameterSetName='NameAvailabilitySubscriptionIdNameTypeExpanded', Mandatory)]
     [System.String]
+    # The Microsoft Azure subscription ID.
     ${SubscriptionId}
 )
 
@@ -65,7 +80,7 @@ begin {
         }
         $parameterSet = $PsCmdlet.ParameterSetName
         $variantSuffix = "_$parameterSet"
-        if ("$parameterSet" -eq '__Generic' -or "$parameterSet" -eq '__AllParameterSets') {
+        if ("$parameterSet" -eq '__NoParameters' -or "$parameterSet" -eq '__AllParameterSets') {
             $variantSuffix = ''
         }
         $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand("AppConfiguration.private\Test-AzConfigurationStoreNameAvailability$variantSuffix", [System.Management.Automation.CommandTypes]::Cmdlet)
@@ -92,11 +107,4 @@ end {
         throw
     }
 }
-
-<#
-.ForwardHelpTargetName AppConfiguration.private\Test-AzConfigurationStoreNameAvailability_NameAvailabilityNameTypeExpanded
-.ForwardHelpCategory Cmdlet
-.Description
-Checks whether the configuration store name is available for use.
-#>
 }

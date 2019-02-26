@@ -13,18 +13,14 @@ schema: 2.0.0
 
 ### ResourceGroupNameConfigStoreName (Default)
 ```
-Remove-AzConfigurationStore [-AsJob] [-Break] -ConfigStoreName <String> [-DefaultProfile <Object>]
- [-HttpPipelineAppend <SendAsyncStep[]>] [-HttpPipelinePrepend <SendAsyncStep[]>] [-PassThru] [-Proxy <Uri>]
- [-ProxyCredential <PSCredential>] [-ProxyUseDefaultCredentials] -ResourceGroupName <String> [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Remove-AzConfigurationStore [-AsJob] -ConfigStoreName <String> [-DefaultProfile <Object>] [-PassThru]
+ -ResourceGroupName <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### SubscriptionIdResourceGroupNameConfigStoreName
 ```
-Remove-AzConfigurationStore [-AsJob] [-Break] -ConfigStoreName <String> [-DefaultProfile <Object>]
- [-HttpPipelineAppend <SendAsyncStep[]>] [-HttpPipelinePrepend <SendAsyncStep[]>] [-PassThru] [-Proxy <Uri>]
- [-ProxyCredential <PSCredential>] [-ProxyUseDefaultCredentials] -ResourceGroupName <String>
- -SubscriptionId <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-AzConfigurationStore [-AsJob] -ConfigStoreName <String> [-DefaultProfile <Object>] [-PassThru]
+ -ResourceGroupName <String> -SubscriptionId <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,21 +39,6 @@ PS C:\> {{ Add example code here }}
 
 ### -AsJob
 Run the command as a job
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Break
-Wait for .NET debugger to attach
 
 ```yaml
 Type: SwitchParameter
@@ -101,83 +82,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -HttpPipelineAppend
-SendAsync Pipeline Steps to be appended to the front of the pipeline
-
-```yaml
-Type: SendAsyncStep[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -HttpPipelinePrepend
-SendAsync Pipeline Steps to be prepended to the front of the pipeline
-
-```yaml
-Type: SendAsyncStep[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -PassThru
-When specified, PassThru will force the cmdlet return a ''bool'' given that there isn''t a return type by default.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Proxy
-The URI for the proxy server to use
-
-```yaml
-Type: Uri
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProxyCredential
-Credentials for a proxy server to use for the remote call
-
-```yaml
-Type: PSCredential
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProxyUseDefaultCredentials
-Use the default credentials for the proxy
+When specified, PassThru will force the cmdlet return a 'bool' given that there isn't a return type by default.
 
 ```yaml
 Type: SwitchParameter

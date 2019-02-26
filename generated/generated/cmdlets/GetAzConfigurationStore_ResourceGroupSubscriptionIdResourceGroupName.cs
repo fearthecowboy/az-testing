@@ -2,8 +2,10 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Cmdlets
 {
     using static Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Extensions;
     /// <summary>Lists the configuration stores for a given resource group.</summary>
-    [System.Management.Automation.Cmdlet(System.Management.Automation.VerbsCommon.Get, @"AzConfigurationStore_ResourceGroupSubscriptionIdResourceGroupName", HelpUri = "Lists the configuration stores for a given resource group.")]
+    [System.Management.Automation.Cmdlet(System.Management.Automation.VerbsCommon.Get, @"AzConfigurationStore_ResourceGroupSubscriptionIdResourceGroupName")]
     [System.Management.Automation.OutputType(typeof(Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models.IConfigurationStoreListResult))]
+    [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Description(@"Lists the configuration stores for a given resource group.")]
+    [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Generated]
     public class GetAzConfigurationStore_ResourceGroupSubscriptionIdResourceGroupName : System.Management.Automation.PSCmdlet, Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.IEventListener
     {
         /// <summary>A unique id generatd for the this cmdlet when it is instantiated.</summary>
@@ -15,7 +17,8 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Cmdlets
         /// <summary>The <see cref="System.Threading.CancellationTokenSource" /> for this operation.</summary>
         private System.Threading.CancellationTokenSource _cancellationTokenSource = new System.Threading.CancellationTokenSource();
         /// <summary>Wait for .NET debugger to attach</summary>
-        [System.Management.Automation.Parameter(Mandatory = false, DontShow= true, HelpMessage = "Wait for .NET debugger to attach")]
+        [System.Management.Automation.Parameter(Mandatory = false, DontShow = true, HelpMessage = "Wait for .NET debugger to attach")]
+        [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Category(Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.ParameterCategory.Runtime)]
         public System.Management.Automation.SwitchParameter Break {get;set;}
         /// <summary>The reference to the client API class.</summary>
         public Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.AppConfiguration Client => Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Module.Instance.ClientAPI;
@@ -25,14 +28,17 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Cmdlets
         [System.Management.Automation.Parameter(Mandatory = false, HelpMessage = "The credentials, account, tenant, and subscription used for communication with Azure.")]
         [System.Management.Automation.ValidateNotNull]
         [System.Management.Automation.Alias("AzureRMContext", "AzureCredential")]
+        [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Category(Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.ParameterCategory.Azure)]
         public object DefaultProfile {get;set;}
         /// <summary>SendAsync Pipeline Steps to be appended to the front of the pipeline</summary>
-        [System.Management.Automation.Parameter(Mandatory = false, DontShow= true, HelpMessage = "SendAsync Pipeline Steps to be appended to the front of the pipeline")]
+        [System.Management.Automation.Parameter(Mandatory = false, DontShow = true, HelpMessage = "SendAsync Pipeline Steps to be appended to the front of the pipeline")]
         [System.Management.Automation.ValidateNotNull]
+        [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Category(Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.ParameterCategory.Runtime)]
         public Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[] HttpPipelineAppend {get;set;}
         /// <summary>SendAsync Pipeline Steps to be prepended to the front of the pipeline</summary>
-        [System.Management.Automation.Parameter(Mandatory = false, DontShow= true, HelpMessage = "SendAsync Pipeline Steps to be prepended to the front of the pipeline")]
+        [System.Management.Automation.Parameter(Mandatory = false, DontShow = true, HelpMessage = "SendAsync Pipeline Steps to be prepended to the front of the pipeline")]
         [System.Management.Automation.ValidateNotNull]
+        [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Category(Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.ParameterCategory.Runtime)]
         public Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[] HttpPipelinePrepend {get;set;}
         /// <summary>Accessor for our copy of the InvocationInfo.</summary>
         public System.Management.Automation.InvocationInfo InvocationInformation
@@ -57,14 +63,17 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Cmdlets
         /// </summary>
         private Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.HttpPipeline Pipeline {get;set;}
         /// <summary>The URI for the proxy server to use</summary>
-        [System.Management.Automation.Parameter(Mandatory = false, DontShow= true, HelpMessage = "The URI for the proxy server to use")]
+        [System.Management.Automation.Parameter(Mandatory = false, DontShow = true, HelpMessage = "The URI for the proxy server to use")]
+        [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Category(Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.ParameterCategory.Runtime)]
         public System.Uri Proxy {get;set;}
         /// <summary>Credentials for a proxy server to use for the remote call</summary>
-        [System.Management.Automation.Parameter(Mandatory = false, DontShow= true, HelpMessage = "Credentials for a proxy server to use for the remote call")]
+        [System.Management.Automation.Parameter(Mandatory = false, DontShow = true, HelpMessage = "Credentials for a proxy server to use for the remote call")]
         [System.Management.Automation.ValidateNotNull]
+        [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Category(Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.ParameterCategory.Runtime)]
         public System.Management.Automation.PSCredential ProxyCredential {get;set;}
         /// <summary>Use the default credentials for the proxy</summary>
-        [System.Management.Automation.Parameter(Mandatory = false, DontShow= true, HelpMessage = "Use the default credentials for the proxy")]
+        [System.Management.Automation.Parameter(Mandatory = false, DontShow = true, HelpMessage = "Use the default credentials for the proxy")]
+        [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Category(Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.ParameterCategory.Runtime)]
         public System.Management.Automation.SwitchParameter ProxyUseDefaultCredentials {get;set;}
         /// <summary>Backing field for <see cref="ResourceGroupName" /> property.</summary>
         private string _resourceGroupName;
@@ -107,7 +116,7 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Cmdlets
             Module.Instance.SetProxyConfiguration(Proxy, ProxyCredential, ProxyUseDefaultCredentials);
             if (Break)
             {
-                System.AttachDebugger.Break();
+                Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.AttachDebugger.Break();
             }
             ((Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.IEventListener)this).Signal(Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.Events.CmdletBeginProcessing).Wait(); if( ((Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.IEventListener)this).Token.IsCancellationRequested ) { return; }
         }

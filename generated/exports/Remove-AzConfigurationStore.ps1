@@ -1,58 +1,74 @@
+<#
+.Description
+Deletes a configuration store.
+#>
 function Remove-AzConfigurationStore {
 [OutputType('System.Boolean')]
-[CmdletBinding(DefaultParameterSetName='ResourceGroupNameConfigStoreName', SupportsShouldProcess=$true, ConfirmImpact='Medium')]
+[CmdletBinding(DefaultParameterSetName='ResourceGroupNameConfigStoreName', SupportsShouldProcess, ConfirmImpact='Medium')]
 param(
-    [Parameter(HelpMessage='Run the command as a job')]
+    [Parameter()]
     [System.Management.Automation.SwitchParameter]
+    # Run the command as a job
     ${AsJob},
 
-    [Parameter(DontShow=$true, HelpMessage='Wait for .NET debugger to attach')]
+    [Parameter(DontShow)]
     [System.Management.Automation.SwitchParameter]
+    # Wait for .NET debugger to attach
     ${Break},
 
-    [Parameter(Mandatory=$true, HelpMessage='The name of the configuration store.')]
+    [Parameter(Mandatory)]
     [System.String]
+    # The name of the configuration store.
     ${ConfigStoreName},
 
-    [Parameter(HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
-    [Alias('AzureRMContext','AzureCredential')]
+    [Parameter()]
+    [Alias('AzureRMContext', 'AzureCredential')]
     [ValidateNotNull()]
     [System.Object]
+    # The credentials, account, tenant, and subscription used for communication with Azure.
     ${DefaultProfile},
 
-    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
+    # SendAsync Pipeline Steps to be appended to the front of the pipeline
     ${HttpPipelineAppend},
 
-    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
+    # SendAsync Pipeline Steps to be prepended to the front of the pipeline
     ${HttpPipelinePrepend},
 
-    [Parameter(HelpMessage='When specified, PassThru will force the cmdlet return a ''bool'' given that there isn''t a return type by default.')]
+    [Parameter()]
     [System.Management.Automation.SwitchParameter]
+    # When specified, PassThru will force the cmdlet return a 'bool' given that there isn't a return type by default.
     ${PassThru},
 
-    [Parameter(DontShow=$true, HelpMessage='The URI for the proxy server to use')]
+    [Parameter(DontShow)]
     [System.Uri]
+    # The URI for the proxy server to use
     ${Proxy},
 
-    [Parameter(DontShow=$true, HelpMessage='Credentials for a proxy server to use for the remote call')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [System.Management.Automation.PSCredential]
+    # Credentials for a proxy server to use for the remote call
     ${ProxyCredential},
 
-    [Parameter(DontShow=$true, HelpMessage='Use the default credentials for the proxy')]
+    [Parameter(DontShow)]
     [System.Management.Automation.SwitchParameter]
+    # Use the default credentials for the proxy
     ${ProxyUseDefaultCredentials},
 
-    [Parameter(Mandatory=$true, HelpMessage='The name of the resource group to which the container registry belongs.')]
+    [Parameter(Mandatory)]
     [System.String]
+    # The name of the resource group to which the container registry belongs.
     ${ResourceGroupName},
 
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The Microsoft Azure subscription ID.')]
+    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreName', Mandatory)]
     [System.String]
+    # The Microsoft Azure subscription ID.
     ${SubscriptionId}
 )
 
@@ -64,7 +80,7 @@ begin {
         }
         $parameterSet = $PsCmdlet.ParameterSetName
         $variantSuffix = "_$parameterSet"
-        if ("$parameterSet" -eq '__Generic' -or "$parameterSet" -eq '__AllParameterSets') {
+        if ("$parameterSet" -eq '__NoParameters' -or "$parameterSet" -eq '__AllParameterSets') {
             $variantSuffix = ''
         }
         $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand("AppConfiguration.private\Remove-AzConfigurationStore$variantSuffix", [System.Management.Automation.CommandTypes]::Cmdlet)
@@ -91,11 +107,4 @@ end {
         throw
     }
 }
-
-<#
-.ForwardHelpTargetName AppConfiguration.private\Remove-AzConfigurationStore_ResourceGroupNameConfigStoreName
-.ForwardHelpCategory Cmdlet
-.Description
-Deletes a configuration store.
-#>
 }
