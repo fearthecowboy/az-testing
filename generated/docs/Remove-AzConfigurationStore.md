@@ -132,7 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-When specified, PassThru will force the cmdlet return a 'bool' given that there isn't a return type by default.
+When specified, PassThru will force the cmdlet return a ''bool'' given that there isn''t a return type by default.
 
 ```yaml
 Type: SwitchParameter

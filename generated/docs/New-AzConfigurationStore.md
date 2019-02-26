@@ -8,6 +8,7 @@ schema: 2.0.0
 # New-AzConfigurationStore
 
 ## SYNOPSIS
+
 ## SYNTAX
 
 ### ResourceGroupNameConfigStoreNameLocationTagsPropertiesExpanded (Default)
@@ -46,8 +47,6 @@ New-AzConfigurationStore [-AsJob] [-Break] -ConfigStoreName <String> [-DefaultPr
 ## DESCRIPTION
 Creates a configuration store with the specified parameters.
 
-Regenerates an access key for the specified configuration store.
-
 ## EXAMPLES
 
 ### Example 1
@@ -75,6 +74,8 @@ Accept wildcard characters: False
 ```
 
 ### -Break
+Wait for .NET debugger to attach
+
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
@@ -104,6 +105,8 @@ Accept wildcard characters: False
 ```
 
 ### -ConfigStoreName
+The name of the configuration store.
+
 ```yaml
 Type: String
 Parameter Sets: (All)
@@ -117,6 +120,8 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultProfile
+The credentials, account, tenant, and subscription used for communication with Azure.
+
 ```yaml
 Type: Object
 Parameter Sets: (All)
@@ -130,6 +135,8 @@ Accept wildcard characters: False
 ```
 
 ### -HttpPipelineAppend
+SendAsync Pipeline Steps to be appended to the front of the pipeline
+
 ```yaml
 Type: SendAsyncStep[]
 Parameter Sets: (All)
@@ -143,6 +150,8 @@ Accept wildcard characters: False
 ```
 
 ### -HttpPipelinePrepend
+SendAsync Pipeline Steps to be prepended to the front of the pipeline
+
 ```yaml
 Type: SendAsyncStep[]
 Parameter Sets: (All)
@@ -156,6 +165,8 @@ Accept wildcard characters: False
 ```
 
 ### -Proxy
+The URI for the proxy server to use
+
 ```yaml
 Type: Uri
 Parameter Sets: (All)
@@ -169,6 +180,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProxyCredential
+Credentials for a proxy server to use for the remote call
+
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
@@ -182,6 +195,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProxyUseDefaultCredentials
+Use the default credentials for the proxy
+
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
@@ -195,6 +210,8 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceGroupName
+The name of the resource group to which the container registry belongs.
+
 ```yaml
 Type: String
 Parameter Sets: (All)
@@ -239,6 +256,8 @@ Accept wildcard characters: False
 ```
 
 ### -SubscriptionId
+The Microsoft Azure subscription ID.
+
 ```yaml
 Type: String
 Parameter Sets: SubscriptionIdResourceGroupNameConfigStoreNameLocationTagsPropertiesEtc, SubscriptionIdResourceGroupNameConfigStoreNameLocationTagsPropertiesEtcEtc
@@ -252,6 +271,9 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
@@ -265,6 +287,8 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
@@ -286,7 +310,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ### Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models.IConfigurationStore
-### Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models.IApiKey
 ## NOTES
 
 ## RELATED LINKS
