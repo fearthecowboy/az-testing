@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
-using static Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.PowerShell.PsExtensions;
+using static Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.PowerShell.PsProxyOutputExtensions;
 
 namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.PowerShell
 {
@@ -27,7 +27,7 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.PowerShell
                 .Select(ci => {
                     var metadata = new CommandMetadata(ci);
                     var parts = metadata.Name.Split('_');
-                    return (name: parts[0], variant: parts.Length > 1 ? parts[1] : UnnamedVariant, info: ci, metadata: metadata);
+                    return (name: parts[0], variant: parts.Length > 1 ? parts[1] : NoParameters, info: ci, metadata: metadata);
                 })
                 .GroupBy(cg => cg.name)
                 .Select(cg => (cmdletGroup: cg, filename: Path.Combine(OutputFolder, $"{cg.Key}.Tests.ps1")))

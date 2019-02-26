@@ -1,56 +1,71 @@
+<#
+.Description
+Lists the access key for the specified configuration store.
+#>
 function Get-AzConfigurationStoreKey {
 [OutputType('Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models.IApiKeyListResult')]
-[CmdletBinding(DefaultParameterSetName='KeysResourceGroupNameConfigStoreName', SupportsShouldProcess=$true, ConfirmImpact='Medium')]
+[CmdletBinding(DefaultParameterSetName='KeysResourceGroupNameConfigStoreName', SupportsShouldProcess, ConfirmImpact='Medium')]
 param(
-    [Parameter(DontShow=$true, HelpMessage='Wait for .NET debugger to attach')]
+    [Parameter(DontShow)]
     [System.Management.Automation.SwitchParameter]
+    # Wait for .NET debugger to attach
     ${Break},
 
-    [Parameter(Mandatory=$true, HelpMessage='The name of the configuration store.')]
+    [Parameter(Mandatory)]
     [System.String]
+    # The name of the configuration store.
     ${ConfigStoreName},
 
-    [Parameter(HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
-    [Alias('AzureRMContext','AzureCredential')]
+    [Parameter()]
+    [Alias('AzureRMContext', 'AzureCredential')]
     [ValidateNotNull()]
     [System.Object]
+    # The credentials, account, tenant, and subscription used for communication with Azure.
     ${DefaultProfile},
 
-    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
+    # SendAsync Pipeline Steps to be appended to the front of the pipeline
     ${HttpPipelineAppend},
 
-    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
+    # SendAsync Pipeline Steps to be prepended to the front of the pipeline
     ${HttpPipelinePrepend},
 
-    [Parameter(DontShow=$true, HelpMessage='The URI for the proxy server to use')]
+    [Parameter(DontShow)]
     [System.Uri]
+    # The URI for the proxy server to use
     ${Proxy},
 
-    [Parameter(DontShow=$true, HelpMessage='Credentials for a proxy server to use for the remote call')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [System.Management.Automation.PSCredential]
+    # Credentials for a proxy server to use for the remote call
     ${ProxyCredential},
 
-    [Parameter(DontShow=$true, HelpMessage='Use the default credentials for the proxy')]
+    [Parameter(DontShow)]
     [System.Management.Automation.SwitchParameter]
+    # Use the default credentials for the proxy
     ${ProxyUseDefaultCredentials},
 
-    [Parameter(Mandatory=$true, HelpMessage='The name of the resource group to which the container registry belongs.')]
+    [Parameter(Mandatory)]
     [System.String]
+    # The name of the resource group to which the container registry belongs.
     ${ResourceGroupName},
 
-    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', Mandatory=$true, HelpMessage='A skip token is used to continue retrieving items after an operation returns a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skipToken parameter that specifies a starting point to use for subsequent calls.')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', Mandatory=$true, HelpMessage='A skip token is used to continue retrieving items after an operation returns a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skipToken parameter that specifies a starting point to use for subsequent calls.')]
+    [Parameter(ParameterSetName='KeysResourceGroupNameConfigStoreNameSkipToken', Mandatory)]
+    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', Mandatory)]
     [System.String]
+    # A skip token is used to continue retrieving items after an operation returns a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skipToken parameter that specifies a starting point to use for subsequent calls.
     ${SkipToken},
 
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', Mandatory=$true, HelpMessage='The Microsoft Azure subscription ID.')]
-    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', Mandatory=$true, HelpMessage='The Microsoft Azure subscription ID.')]
+    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreName', Mandatory)]
+    [Parameter(ParameterSetName='KeysSubscriptionIdResourceGroupNameConfigStoreNameSkipToken', Mandatory)]
     [System.String]
+    # The Microsoft Azure subscription ID.
     ${SubscriptionId}
 )
 
@@ -62,7 +77,7 @@ begin {
         }
         $parameterSet = $PsCmdlet.ParameterSetName
         $variantSuffix = "_$parameterSet"
-        if ("$parameterSet" -eq '__Generic' -or "$parameterSet" -eq '__AllParameterSets') {
+        if ("$parameterSet" -eq '__NoParameters' -or "$parameterSet" -eq '__AllParameterSets') {
             $variantSuffix = ''
         }
         $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand("AppConfiguration.private\Get-AzConfigurationStoreKey$variantSuffix", [System.Management.Automation.CommandTypes]::Cmdlet)
@@ -89,11 +104,4 @@ end {
         throw
     }
 }
-
-<#
-.ForwardHelpTargetName AppConfiguration.private\Get-AzConfigurationStoreKey_KeysResourceGroupNameConfigStoreName
-.ForwardHelpCategory Cmdlet
-.Description
-Lists the access key for the specified configuration store.
-#>
 }

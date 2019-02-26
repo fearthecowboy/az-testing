@@ -1,70 +1,88 @@
+<#
+.Description
+Updates a configuration store with the specified parameters.
+#>
 function Update-AzConfigurationStore {
 [OutputType('Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models.IConfigurationStore')]
-[CmdletBinding(DefaultParameterSetName='ResourceGroupNameConfigStoreNamePropertiesTagsExpanded', SupportsShouldProcess=$true, ConfirmImpact='Medium')]
+[CmdletBinding(DefaultParameterSetName='ResourceGroupNameConfigStoreNamePropertiesTagsExpanded', SupportsShouldProcess, ConfirmImpact='Medium')]
 param(
-    [Parameter(HelpMessage='Run the command as a job')]
+    [Parameter()]
     [System.Management.Automation.SwitchParameter]
+    # Run the command as a job
     ${AsJob},
 
-    [Parameter(DontShow=$true, HelpMessage='Wait for .NET debugger to attach')]
+    [Parameter(DontShow)]
     [System.Management.Automation.SwitchParameter]
+    # Wait for .NET debugger to attach
     ${Break},
 
-    [Parameter(Mandatory=$true, HelpMessage='The name of the configuration store.')]
+    [Parameter(Mandatory)]
     [System.String]
+    # The name of the configuration store.
     ${ConfigStoreName},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreNamePropertiesTags', Mandatory=$true, ValueFromPipeline=$true, HelpMessage='The parameters for updating a configuration store.')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreNamePropertiesTags', Mandatory=$true, ValueFromPipeline=$true, HelpMessage='The parameters for updating a configuration store.')]
+    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreNamePropertiesTags', Mandatory, ValueFromPipeline)]
+    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreNamePropertiesTags', Mandatory, ValueFromPipeline)]
     [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Models.IConfigurationStoreUpdateParameters]
+    # The parameters for updating a configuration store.
     ${ConfigStoreUpdateParameters},
 
-    [Parameter(HelpMessage='The credentials, account, tenant, and subscription used for communication with Azure.')]
-    [Alias('AzureRMContext','AzureCredential')]
+    [Parameter()]
+    [Alias('AzureRMContext', 'AzureCredential')]
     [ValidateNotNull()]
     [System.Object]
+    # The credentials, account, tenant, and subscription used for communication with Azure.
     ${DefaultProfile},
 
-    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be appended to the front of the pipeline')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
+    # SendAsync Pipeline Steps to be appended to the front of the pipeline
     ${HttpPipelineAppend},
 
-    [Parameter(DontShow=$true, HelpMessage='SendAsync Pipeline Steps to be prepended to the front of the pipeline')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.AppConfiguration.Runtime.SendAsyncStep[]]
+    # SendAsync Pipeline Steps to be prepended to the front of the pipeline
     ${HttpPipelinePrepend},
 
-    [Parameter(DontShow=$true, HelpMessage='The URI for the proxy server to use')]
+    [Parameter(DontShow)]
     [System.Uri]
+    # The URI for the proxy server to use
     ${Proxy},
 
-    [Parameter(DontShow=$true, HelpMessage='Credentials for a proxy server to use for the remote call')]
+    [Parameter(DontShow)]
     [ValidateNotNull()]
     [System.Management.Automation.PSCredential]
+    # Credentials for a proxy server to use for the remote call
     ${ProxyCredential},
 
-    [Parameter(DontShow=$true, HelpMessage='Use the default credentials for the proxy')]
+    [Parameter(DontShow)]
     [System.Management.Automation.SwitchParameter]
+    # Use the default credentials for the proxy
     ${ProxyUseDefaultCredentials},
 
-    [Parameter(Mandatory=$true, HelpMessage='The name of the resource group to which the container registry belongs.')]
+    [Parameter(Mandatory)]
     [System.String]
+    # The name of the resource group to which the container registry belongs.
     ${ResourceGroupName},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreNamePropertiesTagsExpanded', HelpMessage='The value of this property indicates whether the configuration store endpoint should be enabled to serve requests.')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreNamePropertiesTagsExpandedEtc', HelpMessage='The value of this property indicates whether the configuration store endpoint should be enabled to serve requests.')]
+    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreNamePropertiesTagsExpanded')]
+    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreNamePropertiesTagsExpandedEtc')]
     [System.Management.Automation.SwitchParameter]
-    ${Enabled},
+    # The value of this property indicates whether the configuration store endpoint should be enabled to serve requests.
+    ${ConfigurationStorePropertiesUpdateParametersEnabled},
 
-    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreNamePropertiesTagsExpanded', HelpMessage='The ARM resource tags.')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreNamePropertiesTagsExpandedEtc', HelpMessage='The ARM resource tags.')]
+    [Parameter(ParameterSetName='ResourceGroupNameConfigStoreNamePropertiesTagsExpanded')]
+    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreNamePropertiesTagsExpandedEtc')]
     [System.Collections.Hashtable]
+    # The ARM resource tags.
     ${Tag},
 
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreNamePropertiesTags', Mandatory=$true, HelpMessage='The Microsoft Azure subscription ID.')]
-    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreNamePropertiesTagsExpandedEtc', Mandatory=$true, HelpMessage='The Microsoft Azure subscription ID.')]
+    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreNamePropertiesTags', Mandatory)]
+    [Parameter(ParameterSetName='SubscriptionIdResourceGroupNameConfigStoreNamePropertiesTagsExpandedEtc', Mandatory)]
     [System.String]
+    # The Microsoft Azure subscription ID.
     ${SubscriptionId}
 )
 
@@ -76,7 +94,7 @@ begin {
         }
         $parameterSet = $PsCmdlet.ParameterSetName
         $variantSuffix = "_$parameterSet"
-        if ("$parameterSet" -eq '__Generic' -or "$parameterSet" -eq '__AllParameterSets') {
+        if ("$parameterSet" -eq '__NoParameters' -or "$parameterSet" -eq '__AllParameterSets') {
             $variantSuffix = ''
         }
         $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand("AppConfiguration.private\Update-AzConfigurationStore$variantSuffix", [System.Management.Automation.CommandTypes]::Cmdlet)
@@ -103,11 +121,4 @@ end {
         throw
     }
 }
-
-<#
-.ForwardHelpTargetName AppConfiguration.private\Update-AzConfigurationStore_ResourceGroupNameConfigStoreNamePropertiesTagsExpanded
-.ForwardHelpCategory Cmdlet
-.Description
-Updates a configuration store with the specified parameters.
-#>
 }
